@@ -41,6 +41,8 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 
+AUTH_USER_MODEL = 'users.CustomUser'
+
 ROOT_URLCONF = 'reactjs_auth.urls'
 
 TEMPLATES = [
