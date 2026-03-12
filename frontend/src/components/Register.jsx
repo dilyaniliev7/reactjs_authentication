@@ -12,17 +12,17 @@ const Register = () => {
     const navigate = useNavigate()
     const {handleSubmit, control} = useForm()
 
-    const submission = (data) => {
-            AxiosInstance.post(
-                    `register/`,{
-                            email: data.email
-                            password: data.password,
-                        }
-                )
-            .then(() => {
-                    navigate(`/`)
-                })
+        const submission = (data) => {
+        AxiosInstance.post(`register/`,{
+            email: data.email,
+            password: data.password,
+        })
+
+        .then(() => {
+            navigate(`/`)
         }
+        )
+    }
 
     return (
         <div className={"myBackground"}>
@@ -36,23 +36,30 @@ const Register = () => {
                 <Box className={"itemBox"}>
                     <MyTextField
                         label={"Email"}
+                        name={"email"}
+                        control={control}
                     />
                 </Box>
 
                 <Box className={"itemBox"}>
                     <MyPassField
                         label={"Password"}
+                        name={"password"}
+                        control={control}
                     />
                 </Box>
 
                 <Box className={"itemBox"}>
                     <MyPassField
                         label={"Confirmed password"}
+                        name={"password2"}
+                        control={control}
                     />
                 </Box>
 
                 <Box className={"itemBox"}>
                     <MyButton
+                        type={"submit"}
                         label={"Register"}
                     />
                 </Box>

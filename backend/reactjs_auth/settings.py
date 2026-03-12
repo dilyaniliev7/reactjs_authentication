@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from django.conf.global_settings import AUTHENTICATION_BACKENDS
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'knox',
     'corsheaders',
     'users',
 ]
@@ -43,6 +46,10 @@ CORS_ALLOWED_ORIGINS = [
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
+AUTHENTICATION_BACKENDS = [
+    'users.auth_backend.EmailAuthBackend'
+]
+
 ROOT_URLCONF = 'reactjs_auth.urls'
 
 TEMPLATES = [
@@ -62,6 +69,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'reactjs_auth.wsgi.application'
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+}
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
