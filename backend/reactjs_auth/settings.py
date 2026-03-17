@@ -48,7 +48,8 @@ CORS_ALLOWED_ORIGINS = [
 AUTH_USER_MODEL = 'users.CustomUser'
 
 AUTHENTICATION_BACKENDS = [
-    'users.auth_backend.EmailAuthBackend'
+    #'users.auth_backend.EmailAuthBackend',
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 ROOT_URLCONF = 'reactjs_auth.urls'

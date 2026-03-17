@@ -48,3 +48,15 @@ def password_reset_token_created(reset_password_token, *args, **kwargs):
         'full_link': full_link,
         'email_adress': reset_password_token.user.email
     }
+
+    html_message = render_to_string("backend/email.html", context=context)
+    plain_message = strip_tags(html_message)
+
+    msg = EmailMultiAlternatives(
+        subject = "Request for resetting password for {title}".format(title=reset_password_token.user.email),
+        body=plain_message,
+        from_email="sender@example.com",
+        to=[reset_password_token.user.email]
+    )
+    msg.attach_alternative(html_message, "text/html")
+    msg.send()
