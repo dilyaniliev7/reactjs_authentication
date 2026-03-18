@@ -1,11 +1,12 @@
 import {Box} from '@mui/material'
 
-const message = ({text}) => {
+const Mymessage = ({text}) => {
         return (
-                <Box>
+                <Box sx={
+                    {backgroundColor: '#69C9AB',color:'#FFFFFF', width: '90%', height: '40px', position:'absolute', top:'20px', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
                     {text}
                 </Box>
             )
     }
 
-export default message
+export default Mymessage

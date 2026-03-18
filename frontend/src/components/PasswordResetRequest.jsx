@@ -1,4 +1,5 @@
 import '../App.css'
+import {React, useEffect, useMemo, useState} from 'react'
 import {Box} from '@mui/material'
 import MyTextField from './forms/MyTextField'
 import MyPassField from './forms/MyPassField'
@@ -7,27 +8,30 @@ import {Link} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import AxiosInstance from './AxiosInstance'
 import {useNavigate} from 'react-router-dom'
+import Mymessage from './Message'
 
 const PasswordResetRequest = () => {
     const navigate = useNavigate()
     const {handleSubmit, control} = useForm()
 
+    const [ShowMessage, setShowMessage] = useState(false)
+
     const submission = (data) => {
-        AxiosInstance.post(`api/password_reset`,{
+        AxiosInstance.post(`api/password_reset/`,{
             email: data.email,
         })
 
         .then((response) => {
-            localStorage.setItem('Token', response.data.token)
-            navigate(`/home`)
+            setShowMessage(true)
         }
-        ).catch(() => {
-                console.log("Error during login", error)
-            })
+        )
     }
     return (
             <div className={"myBackground"}>
+            {ShowMessage ? <Mymessage text={"If your emai exist you have received an email with instructions for resetting the password"}/> : null}
             <form onSubmit={handleSubmit(submission)}>
+
+
             <Box className={"whiteBox"}>
                 <Box className={"itemBox"}>
                     <Box className={"title"}> Request password reset </Box>
