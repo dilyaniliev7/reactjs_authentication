@@ -8,13 +8,13 @@ import {useForm} from 'react-hook-form'
 import AxiosInstance from './AxiosInstance'
 import {useNavigate} from 'react-router-dom'
 
-const Login = () => {
+const PasswordResetRequest = () => {
     const navigate = useNavigate()
     const {handleSubmit, control} = useForm()
+
     const submission = (data) => {
-        AxiosInstance.post(`login/`,{
+        AxiosInstance.post(`api/password_reset`,{
             email: data.email,
-            password: data.password,
         })
 
         .then((response) => {
@@ -26,11 +26,11 @@ const Login = () => {
             })
     }
     return (
-        <div className={"myBackground"}>
+            <div className={"myBackground"}>
             <form onSubmit={handleSubmit(submission)}>
             <Box className={"whiteBox"}>
                 <Box className={"itemBox"}>
-                    <Box className={"title"}> Login for Auth App </Box>
+                    <Box className={"title"}> Request password reset </Box>
                 </Box>
 
                 <Box className={"itemBox"}>
@@ -42,23 +42,13 @@ const Login = () => {
                 </Box>
 
                 <Box className={"itemBox"}>
-                    <MyPassField
-                        label={"Password"}
-                        name={"password"}
-                        control={control}
-                    />
-                </Box>
-
-                <Box className={"itemBox"}>
                     <MyButton
-                        label={"Login"}
+                        label={"Request password reset"}
                         type={"submit"}
                     />
                 </Box>
 
                 <Box className={"itemBox"} sx={{flexDirection:'column'}}>
-                   <Link to="/register"> No account yet? Please register!</Link>
-                   <Link to="/request/password_reset"> Password forgotten? Click here</Link>
                 </Box>
             </Box>
         </form>
@@ -66,4 +56,4 @@ const Login = () => {
         )
     }
 
-export default Login
+export default PasswordResetRequest
