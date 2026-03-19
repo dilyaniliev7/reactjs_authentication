@@ -6,7 +6,7 @@ import Login from './components/Login'
 import Navbar from './components/Navbar'
 import About from './components/About'
 import {Routes, Route, useLocation} from 'react-router-dom'
-import ProtectedRoute from './components/ProtectedRoute'
+import ProtectedRoute from './components/ProtectedRoutes'
 import PasswordResetRequest from './components/PasswordResetRequest'
 import PasswordReset from './components/PasswordReset'
 

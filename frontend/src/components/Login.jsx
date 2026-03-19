@@ -1,4 +1,5 @@
 import '../App.css'
+import {useState} from 'react'
 import {Box} from '@mui/material'
 import MyTextField from './forms/MyTextField'
 import MyPassField from './forms/MyPassField'
@@ -11,6 +12,8 @@ import {useNavigate} from 'react-router-dom'
 const Login = () => {
     const navigate = useNavigate()
     const {handleSubmit, control} = useForm()
+    const [ShowMessage, setShowMessage] = useState(false)
+
     const submission = (data) => {
         AxiosInstance.post(`login/`,{
             email: data.email,
@@ -21,7 +24,8 @@ const Login = () => {
             localStorage.setItem('Token', response.data.token)
             navigate(`/home`)
         }
-        ).catch(() => {
+        ).catch((error) => {
+                setShowMessage(true)
                 console.log("Error during login", error)
             })
     }
