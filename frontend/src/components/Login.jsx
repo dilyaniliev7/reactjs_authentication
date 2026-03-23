@@ -45,17 +45,17 @@ const Login = () =>{
 
                 <Box className={"itemBox"}>
                     <MyTextField
-                        label={"Email"}
-                        name ={"email"}
-                        control={control}
+                    label={"Email"}
+                    name ={"email"}
+                    control={control}
                     />
                 </Box>
 
                 <Box className={"itemBox"}>
                     <MyPassField
-                        label={"Password"}
-                        name ={"password"}
-                        control={control}
+                    label={"Password"}
+                    name ={"password"}
+                    control={control}
                     />
                 </Box>
 
